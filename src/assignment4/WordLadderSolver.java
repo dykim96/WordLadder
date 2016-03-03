@@ -44,7 +44,7 @@ public class WordLadderSolver implements Assignment4Interface
     	solutionList = MakeLadder(startWord, endWord, 5, solutionList); //initially pass in 5 because you haven't changed any. in the top most call, you want to change all 5 letters
     	
     	if (solutionList.size() == 0){
-    		String message = "No word ladder possible between " + startWord + "and " + endWord;
+    		String message = "No word ladder possible between " + startWord + " and " + endWord;
     		throw new NoSuchLadderException(message);
     	}
     	return solutionList;
