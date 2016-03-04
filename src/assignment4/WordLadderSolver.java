@@ -79,8 +79,8 @@ public class WordLadderSolver implements Assignment4Interface
 
     	//if dictionary does not contain startword or endword return empty arraylist 
     	if(!dictionary.contains(startWord) || !dictionary.contains(endWord)){
-    		String message = "\nAt least one of the words " + startWord + " and " + endWord + " are not legitimate 5-letter words from the dictionary";
-    		throw new NoSuchLadderException(message);
+    		System.out.println("\nAt least one of the words " + startWord + " and " + endWord + " are not legitimate 5-letter words from the dictionary");
+    		return solutionList;
     	}
     	
     	solutionList.add(startWord);

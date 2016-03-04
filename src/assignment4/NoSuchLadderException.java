@@ -12,7 +12,8 @@ public class NoSuchLadderException extends Exception
 
     public NoSuchLadderException(String message)
     {
-        super(message);
+        //super(message);
+    	System.out.println(message);
     }
 
     public NoSuchLadderException(String message, Throwable throwable)
