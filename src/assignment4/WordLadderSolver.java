@@ -73,27 +73,37 @@ public class WordLadderSolver implements Assignment4Interface
     @Override
     public List<String> computeLadder(String startWord, String endWord) throws NoSuchLadderException 
     {
+    	System.out.print("For the input words \"" + startWord + "\" and \"" + endWord + "\"");
         // implement this method
     	ArrayList<String> solutionList = new ArrayList<String>();
 
     	//if dictionary does not contain startword or endword return empty arraylist 
     	if(!dictionary.contains(startWord) || !dictionary.contains(endWord)){
-    		return solutionList;
+    		String message = "\nAt least one of the words " + startWord + " and " + endWord + " are not legitimate 5-letter words from the dictionary";
+    		throw new NoSuchLadderException(message);
     	}
     	
     	solutionList.add(startWord);
     	//if startword is also endword just return wordladder
     	if(startWord.equals(endWord)){
+    		System.out.println(" the following word ladder was found");
+    		System.out.println(startWord);
     		return solutionList;
     	}
     	solutionList = MakeLadder(startWord, endWord, 5, solutionList); //initially pass in 5 because you haven't changed any. in the top most call, you want to change all 5 letters
     	
     	if (solutionList.size() == 0){
-    		String message = "No word ladder possible between " + startWord + " and " + endWord;
+    		String message = "\nThere is no word ladder between " + startWord + " and " + endWord + "!";
     		throw new NoSuchLadderException(message);
     	}
+    	else{
+    		System.out.println(" the following word ladder was found");
+    		for(int i = 0; i < solutionList.size(); i++){
+    			System.out.print(" " + solutionList.get(i));
+    		}
+    		System.out.println("");
+    	}
     	return solutionList;
-      // new UnsupportedOperationException("Not implemented yet!");
     }
 
     private boolean compareTwoWords(String word1, String word2){
