@@ -31,6 +31,9 @@ public class WordLadderSolver implements Assignment4Interface
 
 	}
 	
+	public WordLadderSolver(ArrayList<String> dictionary){
+		this.dictionary = dictionary;
+	}
 
 
     // do not change signature of the method implemented from the interface
@@ -39,8 +42,17 @@ public class WordLadderSolver implements Assignment4Interface
     {
         // implement this method
     	ArrayList<String> solutionList = new ArrayList<String>();
+
+    	//if dictionary does not contain startword or endword return empty arraylist 
+    	if(!dictionary.contains(startWord) || !dictionary.contains(endWord)){
+    		return solutionList;
+    	}
     	
     	solutionList.add(startWord);
+    	//if startword is also endword just return wordladder
+    	if(startWord.equals(endWord)){
+    		return solutionList;
+    	}
     	solutionList = MakeLadder(startWord, endWord, 5, solutionList); //initially pass in 5 because you haven't changed any. in the top most call, you want to change all 5 letters
     	
     	if (solutionList.size() == 0){
@@ -51,10 +63,52 @@ public class WordLadderSolver implements Assignment4Interface
       // new UnsupportedOperationException("Not implemented yet!");
     }
 
+    private boolean compareTwoWords(String word1, String word2){
+    	//check if they are equal
+    	if(word1.equals(word2)){
+    		return false;
+    	}
+    	//check if their lengths are same
+    	if(word1.length() != word2.length()){
+    		return false;
+    	}
+    	boolean oneDifferenceFound = false;
+    	char[] w1 = word1.toCharArray();
+    	char[] w2 = word2.toCharArray();
+    	//check if words' letters are different
+    	for(int i = 0; i < w1.length; i++){
+    		//if letters are different
+    		if(w1[i] != w2[i]){
+    			if(oneDifferenceFound){//this means there are more than one difference
+    				return false;
+    			}
+    			else{
+    				oneDifferenceFound = true;
+    			}
+    		}
+    	}
+    	return true;
+    }
     @Override
-    public boolean validateResult(String startWord, String endWord, List<String> wordLadder) 
+    public boolean validateResult(String startWord, String endWord,List<String> wordLadder) 
     {
-        throw new UnsupportedOperationException("Not implemented yet!");
+    	//return false if:
+    	//1) wordLadder is empty
+    	//2) first element of wordLadder is not startWord
+    	//3) last element of wordLadder is not endWord
+    	if(wordLadder.isEmpty() || !startWord.equals(wordLadder.get(0)) || !endWord.equals(wordLadder.get(wordLadder.size() - 1))){
+    		return false;
+    	}
+    	//check for adjacent words i.e. 1st and 2nd, 2nd and 3rd
+    	//return false if they are not different by one letter
+    	if(wordLadder.size() > 1){
+    		for(int i = 0; i < wordLadder.size() - 1; i++){
+    			if(!compareTwoWords(wordLadder.get(i), wordLadder.get(i + 1))){
+    				return false;
+    			}
+    		}
+    	}
+    	return true;
     }
     
     

@@ -7,8 +7,7 @@ public class A4Driver
     public static void main(String[] args)
     {
         // Create a word ladder solver object
-        Assignment4Interface wordLadderSolver = new WordLadderSolver();
-
+        Assignment4Interface wordLadderSolver = new WordLadderSolver(args);
         try 
         {
             List<String> result = wordLadderSolver.computeLadder("money", "honey");
