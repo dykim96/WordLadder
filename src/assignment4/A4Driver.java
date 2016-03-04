@@ -18,6 +18,12 @@ public class A4Driver
         {
             List<String> result = wordLadderSolver.computeLadder("money", "honey");
             boolean correct = wordLadderSolver.validateResult("money", "honey", result);
+            if(correct){
+            	System.out.println("Found!");
+            }
+            else{
+            	System.out.println("Not Found!");
+            }
         } 
         catch (NoSuchLadderException e) 
         {

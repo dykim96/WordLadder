@@ -6,6 +6,10 @@
  */
 package assignment4;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 //import java.util.HashMap;
 import java.util.List;
@@ -21,21 +25,49 @@ public class WordLadderSolver implements Assignment4Interface
 	public WordLadderSolver(String[] inputDict){
 		
 		 //insert code to parse the input dictionary, and set dictionary equal to this 
-		dictionary = new ArrayList<String>();
-		dictionary.add("heads");
-		dictionary.add("tails");
-		dictionary.add("heals");
-		dictionary.add("teals");
-		dictionary.add("tells");
-		dictionary.add("tolls");
-		dictionary.add("toils");
+		BuildDictionary(inputDict);
 
 	}
 	
 	public WordLadderSolver(ArrayList<String> dictionary){
 		this.dictionary = dictionary;
 	}
-
+	
+	private void BuildDictionary(String[] inputDict){
+		dictionary = new ArrayList<String>();
+		try 
+		{
+			FileReader freader = new FileReader(inputDict[0]);
+			BufferedReader reader = new BufferedReader(freader);
+			
+			for (String s = reader.readLine(); s != null; s = reader.readLine()) 
+			{
+				//add if line is not comment
+				if(!s.substring(0, 1).equals("*")){
+					int i;
+					for(i = 0; i < s.length(); i++){
+						//if character is not letter then now i is at the end of word
+						if(!Character.isLetter(s.charAt(i))){
+							break;
+						}
+					}
+					dictionary.add(s.substring(0, i));
+				}
+			}
+			reader.close();
+		} 
+		catch (FileNotFoundException e) 
+		{
+			System.err.println ("Error: File not found. Exiting...");
+			e.printStackTrace();
+			System.exit(-1);
+		} catch (IOException e) 
+		{
+			System.err.println ("Error: IO exception. Exiting...");
+			e.printStackTrace();
+			System.exit(-1);
+		}
+	}
 
     // do not change signature of the method implemented from the interface
     @Override
