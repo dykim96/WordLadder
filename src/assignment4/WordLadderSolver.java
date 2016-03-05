@@ -52,7 +52,7 @@ public class WordLadderSolver implements Assignment4Interface
     	if(startWord.equals(endWord)){
         	solutionList.add(startWord);
     		System.out.println(" the following word ladder was found");
-    		System.out.println(startWord);
+    		System.out.println(" " + startWord + " " + startWord);
     		System.out.println("**********");
     		return solutionList;
     	}
