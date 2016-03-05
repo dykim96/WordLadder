@@ -14,11 +14,9 @@ public class A4Driver
     {
         // Create a word ladder solver object
         Assignment4Interface wordLadderSolver = new WordLadderSolver(args);
-        long time = 0;
         try 
         {
             List<String> result = wordLadderSolver.computeLadder("money", "honey");
-            time = System.currentTimeMillis();
             result = wordLadderSolver.computeLadder("heads", "tails");
             result = wordLadderSolver.computeLadder("ryan", "joe");
             result = wordLadderSolver.computeLadder("altas", "zebra");
@@ -32,8 +30,6 @@ public class A4Driver
         } 
         catch (NoSuchLadderException e) 
         {
-            time = System.currentTimeMillis() - time;
-            System.out.println(time);
             //e.printStackTrace();
         }
     }
