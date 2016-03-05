@@ -15,3 +15,7 @@ Main method: A4Driver.java
 Analysis: A4_dk24338_rrt494.pdf
 
 Design: A4_dk24338_rrt494.pdf
+
+Test Plan:
+
+Test: Test.java
