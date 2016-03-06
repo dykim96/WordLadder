@@ -51,6 +51,7 @@ public class WordLadderSolver implements Assignment4Interface
     	//if startword is also endword just return wordladder
     	if(startWord.equals(endWord)){
         	solutionList.add(startWord);
+        	solutionList.add(startWord);
     		System.out.println(" the following word ladder was found");
     		System.out.println(" " + startWord + " " + startWord);
     		System.out.println("**********");
@@ -59,7 +60,7 @@ public class WordLadderSolver implements Assignment4Interface
     	ResetBooleans();
     	solutionList = MakeLadder(startWord.toLowerCase(), endWord.toLowerCase(), 5);
     	
-    	if (solutionList.size() == 1){
+    	if (solutionList.size() <= 1){
     		String message = "\nThere is no word ladder between " + startWord + " and " + endWord + "!";
     		throw new NoSuchLadderException(message + "\n**********");
     	}
@@ -133,7 +134,7 @@ public class WordLadderSolver implements Assignment4Interface
     private boolean compareTwoWords(String word1, String word2){
     	//check if they are equal
     	if(word1.equals(word2)){
-    		return false;
+    		return true;
     	}
     	//check if their lengths are same
     	if(word1.length() != word2.length()){
